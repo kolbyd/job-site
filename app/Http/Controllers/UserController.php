@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginUserRequest;
+use App\Models\RoleAssignment;
 use App\Models\User;
 use Hash;
 use Request;
@@ -19,6 +20,12 @@ class UserController extends Controller
             'username' => $request->validated()['email'],
             'password' => Hash::make($request->validated()['password'].$salt),
             'salt' => $salt,
+        ]);
+
+        // Assign the user a default role
+        RoleAssignment::create([
+            'user_id' => $user->id,
+            'role_name' => RoleAssignment::VIEWER_ROLE
         ]);
 
         auth()->login($user);
