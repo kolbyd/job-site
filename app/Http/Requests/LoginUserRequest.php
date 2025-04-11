@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\RoleAssignment;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class CreateUserRequest extends FormRequest
+class LoginUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +22,8 @@ class CreateUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => "required|string|max:255",
-            'email' => "required|email|max:255|unique:users,username",
-            'password' => "required|string|min:8|confirmed",
-            'roles' => [ "array", Rule::in(RoleAssignment::AllRoles()) ]
+            'email' => 'required|email',
+            'password' => 'required|string', // Length is handled during registration
         ];
     }
 }
