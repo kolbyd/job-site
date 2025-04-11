@@ -22,7 +22,8 @@ class UserController extends Controller
         ]);
 
         auth()->login($user);
-        return redirect(route('index'))->with('success','User created successfully.');
+        flash()->success('User created successfully.');
+        return redirect(route('index'));
     }
 
     public function login(LoginUserRequest $request)
@@ -30,7 +31,7 @@ class UserController extends Controller
         // Validation is handled by the FormRequest
         
         // Locate the user
-        $user = User::find($request->validated()['email']);
+        $user = User::whereUsername($request->validated()['email'])->first();
         if (!$user) {
             // Use non-descriptive error messages to prevent user enumeration
             flash()->error('Email and password combination do not match. Please try again.');
@@ -38,7 +39,7 @@ class UserController extends Controller
         }
 
         // Next, we need to verify the password
-        $password = Hash::make($request->validated()['password'] . $user->salt);
+        $password = $request->validated()['password'] . $user->salt;
         if (Hash::check($password, $user->password)) {
             // Password is correct, log the user in
             auth()->login($user);
