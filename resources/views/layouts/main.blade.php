@@ -11,11 +11,11 @@
     </head>
     <body class="flex flex-col h-screen bg-gray-900 text-white">
         <header class="flex flex-row items-center justify-between bg-red-400 p-4 text-black">
-            <p class="text-2xl lg:text-4xl my-auto font-bold">Job Site</p>
+            <a href="{{ route('index') }}" class="text-2xl lg:text-4xl my-auto font-bold">Job Site</a>
             <nav class="w-1/3 ml-auto">
                 <ul class="flex flex-1 flex-row items-center justify-around">
                     {{-- TODO: Add routing here --}}
-                    <li><a class="text-lg" href="{{  route('index') }}">Listing</a></li>
+                    <li><a class="text-lg" href="{{ route('index') }}">Listing</a></li>
                     @auth
                         <li><a class="text-lg" href="{{ route('logout') }}">Logout</a></li>
                     @endauth

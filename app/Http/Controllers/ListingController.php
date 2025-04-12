@@ -40,4 +40,12 @@ class ListingController extends Controller
 
         return response()->json(["success" => true, "change" => $change]);
     }
+
+    /**
+     * Show a specific listing.
+     */
+    public function show(JobListing $listing)
+    {
+        return view("listing.index")->with("listing", $listing);
+    }
 }

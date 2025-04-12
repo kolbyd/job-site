@@ -34,7 +34,9 @@ Route::group(['prefix'=> 'auth'], function () {
  * Listing routes.
  */
 Route::group(['prefix' => 'listings'], function () {
-    // Route::get {ID} - View a listing
+    Route::get('{listing}', [ListingController::class, 'show'])
+        ->middleware(RoleMiddleware::class . ':' . RoleAssignment::VIEWER_ROLE)
+        ->name('listing');
 
     Route::post('{listing}/interest', [ListingController::class, 'changeUserInterest'])
         ->middleware(RoleMiddleware::class . ':' . RoleAssignment::VIEWER_ROLE)
