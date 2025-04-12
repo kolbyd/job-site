@@ -19,8 +19,8 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, string $role): Response
     {
         if (auth()->guest()) {
-            return redirect()->route('login')
-                ->with('error', 'You must be logged in to access this page.');
+            flash()->error('You must be logged in to access this page.');
+            return redirect()->route('login');
         }
 
         // Check if the user has the required role.
@@ -31,7 +31,7 @@ class RoleMiddleware
         }
 
         // If the user does not have the required role, redirect them
-        return redirect()->route('index')
-            ->with('error', 'You do not have permission to access this page.');
+        flash()->error('You do not have permission to access this page.');
+        return redirect()->route('index');
     }
 }

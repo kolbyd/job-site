@@ -9,7 +9,7 @@
             <p class="text-xs text-gray-400 mb-4">Since you are an admin, you can see all listings!</p>
             @endrole
         </div>
-        <a href="#" class="ml-auto justify-center h-fit my-auto">
+        <a href="{{ route('listing.create') }}" class="ml-auto justify-center h-fit my-auto">
             <button class="bg-red-400 text-black rounded px-4 py-2 hover:bg-red-500 transition duration-300 ease-in-out cursor-pointer">
                 Create New Listing
             </button>
@@ -32,8 +32,12 @@
                     <td class="p-2 px-4 border border-gray-400 text-gray-400">{{ $listing->created_at->format('Y-m-d H:i') }}</td>
                     <td class="p-2 px-4 border border-gray-400 text-gray-400">
                         <div class="flex flex-col lg:flex-row justify-around">
-                            <a class="text-red-300 cursor-pointer">View/Edit</a>
-                            <a class="text-red-300 cursor-pointer">Delete</a>
+                            <a href="{{ route('listing.edit', $listing->id) }}" class="text-red-300 cursor-pointer">View/Edit</a>
+                            <form method="POST" action="{{ route('listing.destroy', $listing->id) }}" class="ml-2">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-300 cursor-pointer">Delete</a>
+                            </form>
                         </div>
                     </td>
                 </tr>

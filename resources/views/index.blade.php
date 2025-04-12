@@ -6,9 +6,7 @@
             @foreach ($listings as $listing)
                 <div class="flex flex-col bg-gray-800 p-4 rounded-lg shadow-md">
                     <h2 class="text-xl font-bold mb-2">{{ $listing->title }}</h2>
-                    <p class="text-gray-300 mb-2 line-clamp-5">
-                        {{ $listing->body }}
-                    </p>
+                    <p class="text-gray-300 mb-2 line-clamp-5 whitespace-pre-wrap">{{ $listing->body }}</p>
                     <div class="flex xl:flex-1 flex-col xl:flex-row items-center xl:items-end gap-2 xl:gap-0 xl:justify-between mt-auto">
                         <p class="text-gray-400">Posted: {{ $listing->created_at->diffForHumans() }}</p>
                         <div class="overflow-hidden flex flex-col sm:flex-row items-center gap-2 xl:gap-0">

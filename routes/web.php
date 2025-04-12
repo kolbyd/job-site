@@ -45,17 +45,17 @@ Route::group(['prefix' => 'listings'], function () {
         /**
          * Job listing create, update, and delete routes.
          */
-        Route::get('new', [ListingController::class, 'create'])
+        Route::view('new', 'listing.form')
             ->name('listing.create');
-        Route::post('new', [ListingController::class, 'store'])
+        Route::post('new', [ListingController::class, 'posterStore'])
             ->name('listing.store');
 
-        Route::get('{listing}/edit', [ListingController::class, 'edit'])
+        Route::get('{listing}/edit', [ListingController::class, 'posterEdit'])
             ->name('listing.edit');
-        Route::post('{listing}/edit', [ListingController::class, 'update'])
+        Route::put('{listing}/edit', [ListingController::class, 'posterUpdate'])
             ->name('listing.update');
 
-        Route::delete('{listing}', [ListingController::class, 'destroy'])
+        Route::delete('{listing}', [ListingController::class, 'posterDestroy'])
             ->name('listing.destroy');
     });
 

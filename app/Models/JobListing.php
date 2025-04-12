@@ -35,4 +35,9 @@ class JobListing extends Model
     {
         return $this->interestedUsers()->where('user_id', $user->id)->exists();
     }
+
+    public function canModify(User $user)
+    {
+        return $this->user_id === $user->id || $user->isAdmin();
+    }
 }

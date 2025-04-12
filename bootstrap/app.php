@@ -19,6 +19,6 @@ return Application::configure(basePath: dirname(__DIR__))
         // Use php-flasher for validation errors
         $exceptions->render(function (ValidationException $e, Request $request) {
             flash()->error("{$e->getMessage()}");
-            return redirect()->back();
+            return redirect()->back()->withInput();
         });
     })->create();
