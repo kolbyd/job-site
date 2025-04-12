@@ -81,6 +81,10 @@ This will:
 -   Seed the database (with fake data/users)
 -   Optimize the laravel app
 
+**NOTE: This may take up to 2 minutes before the app is available. To view the status, run the command `docker logs -f laravel-app`.**
+
+Setup
+
 To login, use the credentials: `admin@email.com / password`. You will be assigned to the admin role.
 
 All default users from the seeding also have their password set as `password` (if you'd like to test other users).

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\RoleAssignment;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,7 +22,9 @@ class JobListingFactory extends Factory
             'title' => $this->faker->sentence(3),
             'body' => $this->faker->paragraphs(3, true),
             'user_id' => function () {
-                return User::factory()->create()->id;
+                $user = User::factory()->create();
+                $user->roleAssignments()->create(['role_name' => RoleAssignment::POSTER_ROLE]);
+                return $user->id;
             },
             'created_at' => $this->faker->dateTimeBetween('-3 months', 'now'),
         ];
