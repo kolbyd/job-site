@@ -23,9 +23,10 @@ class RoleMiddleware
                 ->with('error', 'You must be logged in to access this page.');
         }
 
-        // Check if the user has the required role
+        // Check if the user has the required role.
+        // Admins get all access.
         $user = auth()->user();
-        if ($user->hasRole($role)) {
+        if ($user->isAdmin() || $user->hasRole($role)) {
             return $next($request);
         }
 

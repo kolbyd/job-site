@@ -34,11 +34,26 @@ Route::group(['prefix'=> 'auth'], function () {
  * Listing routes.
  */
 Route::group(['prefix' => 'listings'], function () {
-    Route::get('{listing}', [ListingController::class, 'show'])
-        ->middleware(RoleMiddleware::class . ':' . RoleAssignment::VIEWER_ROLE)
-        ->name('listing');
+    
+    /**
+     * The following methods are used by users with the "poster" role.
+     */
+    Route::group(['middleware'=> RoleMiddleware::class . ':' . RoleAssignment::POSTER_ROLE], function () {
+        Route::get('my', [ListingController::class, 'posterListingIndex'])
+            ->name('listing.poster-listings');
+    });
 
-    Route::post('{listing}/interest', [ListingController::class, 'changeUserInterest'])
-        ->middleware(RoleMiddleware::class . ':' . RoleAssignment::VIEWER_ROLE)
-        ->name('listing.interest');
+    /**
+     * The following methods are used by users with the "viewer" role.
+     */
+    Route::group(['middleware'=> RoleMiddleware::class . ':' . RoleAssignment::VIEWER_ROLE], function () {
+        Route::get('{listing}', [ListingController::class, 'show'])
+            ->name('listing');
+
+        Route::post('{listing}/interest', [ListingController::class, 'changeUserInterest'])
+            ->name('listing.interest');
+    });
+
+
+    
 });

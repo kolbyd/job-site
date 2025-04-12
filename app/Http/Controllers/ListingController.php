@@ -48,4 +48,20 @@ class ListingController extends Controller
     {
         return view("listing.index")->with("listing", $listing);
     }
+
+    /**
+     * Poster role listing. Admins can see all listings.
+     */
+    public function posterListingIndex()
+    {
+        /** @var User $user */
+        $user = auth()->user();
+        $listings = $user->isAdmin() ? JobListing::query() : $user->postings();
+
+        $listings = $listings
+            ->orderByDesc('created_at')
+            ->paginate(30);
+
+        return view('listing.poster-index')->with("listings", $listings);
+    }
 }

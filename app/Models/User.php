@@ -11,6 +11,8 @@ use Str;
  * A user represents a person who can log in to the system.
  * Users can have different roles and can express interest in job listings.
  * Certain users have greater privileges than others. @see RoleAssignment
+ * 
+ * The 'username' property is the email address of the user.
  */
 class User extends Authenticatable
 {
@@ -58,6 +60,14 @@ class User extends Authenticatable
     public function roleAssignments()
     {
         return $this->hasMany(RoleAssignment::class);
+    }
+
+    /**
+     * Get the user's job postings.
+     */
+    public function postings()
+    {
+        return $this->hasMany(JobListing::class);
     }
 
     /**

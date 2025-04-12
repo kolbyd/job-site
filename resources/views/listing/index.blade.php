@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<div>
+<div class="w-full">
     <a href="{{ route('index') }}"
         class="text-red-300 cursor-pointer">
         <span class="flex flex-row items-center gap-2">
@@ -11,7 +11,7 @@
             Back to Listings
         </span>
     </a>
-    <div class="rounded w-full h-fit mt-2 mx-2 bg-gray-700 p-2">
+    <div class="rounded lg:w-2/3 lg:mx-auto h-fit mt-2 mx-2 bg-gray-700 p-2">
         <div class="flex flex-col md:flex-row justify-between align-bottom mx-2">
             <p class="text-2xl font-bold">
                 {{ $listing->title }}
