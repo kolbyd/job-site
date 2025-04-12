@@ -10,6 +10,7 @@ WORKDIR /app
 COPY package.json package-lock.json vite.config.js ./
 COPY resources/js ./resources/js
 COPY resources/css ./resources/css
+COPY resources/views ./resources/views
 
 RUN npm ci
 RUN npm run build
