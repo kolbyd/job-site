@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="w-full">
-    <div class="flex flex-row">
+    <div class="flex flex-row mb-2">
         <div>
-            <p class="text-2xl font-bold mb-2">My Listings</p>
+            <p class="text-2xl font-bold">My Listings</p>
             @role(\App\Models\RoleAssignment::ADMIN_ROLE)
-            <p class="text-xs text-gray-400 mb-4">Since you are an admin, you can see all listings!</p>
+            <p class="text-xs text-gray-400">Since you are an admin, you can see all listings!</p>
             @endrole
         </div>
         <a href="{{ route('listing.create') }}" class="ml-auto justify-center h-fit my-auto">
