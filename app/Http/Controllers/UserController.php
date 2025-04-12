@@ -7,10 +7,20 @@ use App\Http\Requests\LoginUserRequest;
 use App\Models\RoleAssignment;
 use App\Models\User;
 use Hash;
-use Request;
 
+/**
+ * UserController handles user registration and login.
+ * 
+ * All POST requests use FormRequest classes to validate input.
+ * @see app/Http/Requests
+ */
 class UserController extends Controller
 {
+    /**
+     * Create a new user and log them in as that user (if successful).
+     * @param \App\Http\Requests\CreateUserRequest $request The request object containing the user data.
+     * @return \Illuminate\Http\RedirectResponse Redirects to the main page on success, or back with an error message on failure.
+     */
     public function create(CreateUserRequest $request)
     {
         // Validation is handled by the FormRequest
@@ -33,6 +43,11 @@ class UserController extends Controller
         return redirect(route('index'));
     }
 
+    /**
+     * Login a user.
+     * @param \App\Http\Requests\LoginUserRequest $request The request object containing the login data.
+     * @return mixed|\Illuminate\Http\RedirectResponse Redirects to the main page on success, or back with an error message on failure.
+     */
     public function login(LoginUserRequest $request)
     {
         // Validation is handled by the FormRequest
@@ -59,7 +74,12 @@ class UserController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    /**
+     * Logout the user.
+     * In the routing this is protected by the auth middleware, so this doesn't need to be verified.
+     * @return \Illuminate\Http\RedirectResponse Redirects to the main page with a success message.
+     */
+    public function logout()
     {
         auth()->logout();
 

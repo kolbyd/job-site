@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\JobListing;
-use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
+    /**
+     * The main page of the application.
+     */
     public function index()
     {
         // Return listing data found in the last 2 months

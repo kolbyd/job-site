@@ -7,7 +7,14 @@ use App\Http\Middleware\GuestMiddleware;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ListingController::class, 'index'])->name('index');
+
+/**
+ * Route group for routes involving user authentication.
+ */
 Route::group(['prefix'=> 'auth'], function () {
+    /**
+     * The following methods are used by guest users.
+     */
     Route::group(['middleware'=> GuestMiddleware::class], function () {
         Route::view('login', 'auth.login')->name('login');
         Route::post('login', [UserController::class, 'login'])->name('login');

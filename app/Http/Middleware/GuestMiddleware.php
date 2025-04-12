@@ -6,6 +6,9 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Requires the user to be a guest to access the route.
+ */
 class GuestMiddleware
 {
     /**

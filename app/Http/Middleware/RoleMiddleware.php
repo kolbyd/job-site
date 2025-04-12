@@ -6,6 +6,9 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Requires the user to be in a certain role to access the route.
+ */
 class RoleMiddleware
 {
     /**

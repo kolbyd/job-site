@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * A request to log in a user.
+ */
 class LoginUserRequest extends FormRequest
 {
     /**

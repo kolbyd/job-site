@@ -6,6 +6,9 @@ use App\Models\RoleAssignment;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * A request to create a new user.
+ */
 class CreateUserRequest extends FormRequest
 {
     /**

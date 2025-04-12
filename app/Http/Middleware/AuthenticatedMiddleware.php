@@ -6,6 +6,9 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Requires the user to be authenticated to access the route.
+ */
 class AuthenticatedMiddleware
 {
     /**
