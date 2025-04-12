@@ -19,7 +19,7 @@ Route::group(['prefix'=> 'auth'], function () {
      */
     Route::group(['middleware'=> GuestMiddleware::class], function () {
         Route::view('login', 'auth.login')->name('login');
-        Route::post('login', [UserController::class, 'login'])->name('login');
+        Route::post('login', [UserController::class, 'login'])->name('login.post');
 
         Route::view('register', 'auth.register')->name('register');
         Route::post('register', [UserController::class, 'create'])->name('register.post');

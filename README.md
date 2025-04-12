@@ -64,3 +64,23 @@ Admin's inherit all roles, but can also:
 
 -   Modify or delete ANY job listing
 -   Delete users and manage permissions
+
+### Docker Setup
+
+The project can be ran in either a containerized or non-containerized environment. I've added a docker setup for simplicity
+
+Simply, run:
+`docker compose up -d`
+<br />
+<small>A full setup will be ready for you to use.</small>
+
+This will:
+
+-   Create the image
+-   Apply any migrations
+-   Seed the database (with fake data/users)
+-   Optimize the laravel app
+
+To login, use the credentials: `admin@email.com / password`. You will be assigned to the admin role.
+
+All default users from the seeding also have their password set as `password` (if you'd like to test other users).

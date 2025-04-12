@@ -2,7 +2,7 @@
 @section('auth-title', 'Login')
 
 @section('auth-form')
-    <form action="{{ route('login') }}" method="POST" class="flex flex-col pt-2 px-2">
+    <form action="{{ route('login.post') }}" method="POST" class="flex flex-col pt-2 px-2">
         @csrf
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="rounded p-2 mb-2 border" required />

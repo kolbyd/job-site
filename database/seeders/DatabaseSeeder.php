@@ -31,7 +31,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $listings = JobListing::factory()->count(100)->create();
-        $users = User::factory()->count(100)->create();
+        $users = User::factory()->count(100)
+            ->create()
+            ->each(function ($user) {
+                RoleAssignment::insert([[
+                    "user_id" => $user->id,
+                    "role_name" => RoleAssignment::POSTER_ROLE
+                ], [
+                    "user_id" => $user->id,
+                    "role_name" => RoleAssignment::VIEWER_ROLE
+                ]]);
+            });
 
         // For each listing, take a random amount of users and make them interested in the listing
         foreach ($listings as $listing) {
