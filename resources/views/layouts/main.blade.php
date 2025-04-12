@@ -22,7 +22,7 @@
                         <li><a class="text-lg" href="{{ route('listing.poster-listings') }}">My Listings</a></li>
                     @endrole
                     @role(\App\Models\RoleAssignment::ADMIN_ROLE)
-                        <li><a class="text-lg" href="#">Admin</a></li>
+                        <li><a class="text-lg" href="{{ route('admin.users') }}">User Management</a></li>
                     @endrole
                     @auth
                         <li><a class="text-lg" href="{{ route('logout') }}">Logout</a></li>

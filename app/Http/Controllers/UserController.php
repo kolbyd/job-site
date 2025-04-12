@@ -7,6 +7,8 @@ use App\Http\Requests\LoginUserRequest;
 use App\Models\RoleAssignment;
 use App\Models\User;
 use Hash;
+use Illuminate\Http\Request;
+use Str;
 
 /**
  * UserController handles user registration and login.
@@ -85,5 +87,80 @@ class UserController extends Controller
         auth()->logout();
 
         return redirect(route('index'))->with('success','Logged out successfully.');
+    }
+
+    /**
+     * Admin methods.
+     */
+    /**
+     * Show the user management page, allow the admin to search for users.
+     * @return \Illuminate\Contracts\View\View A view of the user management page.
+     */
+    public function adminUserIndex()
+    {
+        // Allow for searching by name or email
+        if (request('search')) {
+            $users = User::where('name', 'like', '%' . request('search') . '%')
+                ->orWhere('username', 'like', '%' . request('search') . '%');
+        } else {
+            $users = User::query();
+        }
+
+        return view('admin.user-management')->with('users', $users->paginate(50));
+    }
+
+    /**
+     * Summary of adminUpdateUserRole
+     * @param \App\Models\User $user
+     * @param string $role
+     * @param \Illuminate\Http\Request $request
+     * @return void
+     */
+    public function adminUpdateUserRole(User $user, string $role)
+    {
+        // Ensure role is one of our defined roles
+        if ( Str::upper($role) !== Str::upper(RoleAssignment::VIEWER_ROLE) &&
+            Str::upper($role) !== Str::upper(RoleAssignment::POSTER_ROLE) &&
+            Str::upper($role) !== Str::upper(RoleAssignment::ADMIN_ROLE) ) {
+            return response()->json(["success" => false, "message" => "Invalid role."]);
+        }
+
+        // Don't allow the user to remove their own admin role
+        if ($user->id === auth()->user()->id && Str::upper($role) === Str::upper(RoleAssignment::ADMIN_ROLE)) {
+            return response()->json(["success" => false, "message" => "You cannot remove your own admin role."]);
+        }
+
+        // Check if the user already has the role
+        if ($user->hasRole($role)) {
+            $user->roleAssignments()->where('role_name', $role)->delete();
+            $change = "removed";
+        } else {
+            // Assign the role to the user
+            $user->roleAssignments()->create(['role_name' => $role]);
+            $change = "added";
+        }
+
+        return response()->json(["success" => true, "change" => $change]);
+    }
+
+    /**
+     * Admin method to delete a user.
+     * This method is protected by the auth middleware, so this doesn't need to be verified.
+     * @param \App\Models\User $user The user to delete.
+     * @return mixed|\Illuminate\Http\RedirectResponse Redirects to the user management page with a success/error message.
+     */
+    public function adminDestroyUser(User $user)
+    {
+        // Check if the user is an admin
+        if ($user->isAdmin()) {
+            flash()->error('You cannot delete an admin user.');
+            return redirect()->back();
+        }
+
+        // Delete the user
+        $user->delete();
+
+        flash()->success('User deleted successfully.');
+        return redirect()->back();
     }
 }

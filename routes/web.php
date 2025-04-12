@@ -69,7 +69,18 @@ Route::group(['prefix' => 'listings'], function () {
         Route::post('{listing}/interest', [ListingController::class, 'changeUserInterest'])
             ->name('listing.interest');
     });
+});
 
+/**
+ * Route group for admin users.
+ */
+Route::group(['prefix'=> 'admin', 'middleware' => RoleMiddleware::class . ':' . RoleAssignment::ADMIN_ROLE], function () {
+    Route::get('users', [UserController::class,'adminUserIndex'])
+        ->name('admin.users');
 
-    
+    Route::post('users/{user}/{role}', [UserController::class, 'adminUpdateUserRole'])
+        ->name('admin.users.role');
+
+    Route::delete('users/{user}', [UserController::class, 'adminDestroyUser'])
+        ->name('admin.users.destroy');
 });

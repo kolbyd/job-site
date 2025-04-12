@@ -7,7 +7,6 @@ toastr.options = {
 };
 
 window.changeInterestStatus = function (button, listingId) {
-    // Prevent the default action of the button
     button.disabled = true;
 
     axios
@@ -49,5 +48,45 @@ window.changeInterestStatus = function (button, listingId) {
             toastr.error("An error occurred. Please try again.");
 
             button.disabled = false;
+        });
+};
+
+window.changeRoleStatus = function (checkbox, userId, role) {
+    checkbox.disabled = true;
+
+    axios
+        .post(`/admin/users/${userId}/${role}`)
+        .then((data) => {
+            const response = data.data;
+            if (response.success) {
+                if (response.change === "added") {
+                    console.log(response);
+                    toastr.success(
+                        `Added ${role} to user successfully!`,
+                        "Success"
+                    );
+                } else {
+                    toastr.success(
+                        `Removed ${role} from user successfully!`,
+                        "Success"
+                    );
+                }
+            } else {
+                toastr.error(
+                    "Failed to change role status: " + response.message,
+                    "Error"
+                );
+                checkbox.checked = !checkbox.checked;
+            }
+
+            checkbox.disabled = false;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+            toastr.error("An error occurred. Please try again.");
+
+            checkbox.checked = !checkbox.checked;
+
+            checkbox.disabled = false;
         });
 };
