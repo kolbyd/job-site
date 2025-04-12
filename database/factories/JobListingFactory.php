@@ -19,11 +19,11 @@ class JobListingFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3),
-            'body' => $this->faker->paragraph(5),
+            'body' => $this->faker->paragraphs(3, true),
             'user_id' => function () {
                 return User::factory()->create()->id;
             },
-            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'created_at' => $this->faker->dateTimeBetween('-2 months', 'now'),
         ];
     }
 }

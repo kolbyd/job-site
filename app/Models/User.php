@@ -69,10 +69,10 @@ class User extends Authenticatable
         if ($roleAssignments->isEmpty()) {
             return false;
         }
-
+        
         // Check if the user has the specified role
         foreach ($roleAssignments as $roleAssignment) {
-            if (Str::upper($roleAssignment->role) === Str::upper($role)) {
+            if (Str::upper($roleAssignment->role_name) === Str::upper($role)) {
                 return true;
             }
         }

@@ -4,6 +4,8 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthenticatedMiddleware;
 use App\Http\Middleware\GuestMiddleware;
+use App\Http\Middleware\RoleMiddleware;
+use App\Models\RoleAssignment;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ListingController::class, 'index'])->name('index');
@@ -26,4 +28,15 @@ Route::group(['prefix'=> 'auth'], function () {
     Route::get('logout', [UserController::class,'logout'])
         ->middleware(AuthenticatedMiddleware::class)
         ->name('logout');
+});
+
+/**
+ * Listing routes.
+ */
+Route::group(['prefix' => 'listings'], function () {
+    // Route::get {ID} - View a listing
+
+    Route::post('{listing}/interest', [ListingController::class, 'changeUserInterest'])
+        ->middleware(RoleMiddleware::class . ':' . RoleAssignment::VIEWER_ROLE)
+        ->name('listing.interest');
 });

@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        JobListing::getQuery()->delete();
         JobListing::factory()->count(100)->create();
     }
 }

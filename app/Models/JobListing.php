@@ -30,4 +30,9 @@ class JobListing extends Model
                 $user->name = "Deleted User";
             });
     }
+
+    public function userInterested(User $user)
+    {
+        return $this->interestedUsers()->where('user_id', $user->id)->exists();
+    }
 }
