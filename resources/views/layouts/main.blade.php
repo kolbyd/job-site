@@ -10,10 +10,10 @@
         <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher.min.css') }}">
     </head>
     <body class="flex flex-col h-screen bg-gray-900 text-white">
-        <header class="flex flex-row items-center justify-between bg-red-400 p-4 text-black">
+        <header class="flex flex-col md:flex-row md:items-center justify-between bg-red-400 p-4 text-black">
             <a href="{{ route('index') }}" class="text-2xl lg:text-4xl my-auto font-bold">Job Site</a>
-            <nav class="w-1/3 ml-auto">
-                <ul class="flex flex-1 flex-row items-center justify-around">
+            <nav class="md:ml-auto">
+                <ul class="flex flex-1 flex-col md:gap-6 md:flex-row md:items-center justify-around">
                     @auth
                         <li><p class="font-bold">Welcome, {{ auth()->user()->name }}</p></li>
                     @endauth
@@ -34,6 +34,6 @@
                 </ul>
             </nav>
         </header>
-        <div class="flex flex-1 px-4 py-8">@yield('content')</div>
+        <div class="flex flex-1 p-4">@yield('content')</div>
     </body>
 </html>

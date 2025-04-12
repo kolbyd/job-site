@@ -38,9 +38,25 @@ Route::group(['prefix' => 'listings'], function () {
     /**
      * The following methods are used by users with the "poster" role.
      */
-    Route::group(['middleware'=> RoleMiddleware::class . ':' . RoleAssignment::POSTER_ROLE], function () {
-        Route::get('my', [ListingController::class, 'posterListingIndex'])
+    Route::group(['middleware' => RoleMiddleware::class . ':' . RoleAssignment::POSTER_ROLE, 'prefix' => 'my'], function () {
+        Route::get('/', [ListingController::class, 'posterListingIndex'])
             ->name('listing.poster-listings');
+
+        /**
+         * Job listing create, update, and delete routes.
+         */
+        Route::get('new', [ListingController::class, 'create'])
+            ->name('listing.create');
+        Route::post('new', [ListingController::class, 'store'])
+            ->name('listing.store');
+
+        Route::get('{listing}/edit', [ListingController::class, 'edit'])
+            ->name('listing.edit');
+        Route::post('{listing}/edit', [ListingController::class, 'update'])
+            ->name('listing.update');
+
+        Route::delete('{listing}', [ListingController::class, 'destroy'])
+            ->name('listing.destroy');
     });
 
     /**
