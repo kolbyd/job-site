@@ -1,6 +1,10 @@
 import "./bootstrap";
 
-import flasher from "@flasher/flasher";
+import toastr from "toastr";
+
+toastr.options = {
+    positionClass: "toast-top-center mt-2",
+};
 
 window.changeInterestStatus = function (button, listingId) {
     // Prevent the default action of the button
@@ -20,7 +24,7 @@ window.changeInterestStatus = function (button, listingId) {
                         .getElementById(`interest-status-${listingId}-remove`)
                         .classList.remove("hidden");
 
-                    flasher.success("Interest added successfully!", "Success");
+                    toastr.success("Interest added successfully!", "Success");
                 } else {
                     button.classList.add("hidden");
 
@@ -29,13 +33,10 @@ window.changeInterestStatus = function (button, listingId) {
                         .getElementById(`interest-status-${listingId}-add`)
                         .classList.remove("hidden");
 
-                    flasher.success(
-                        "Interest removed successfully!",
-                        "Success"
-                    );
+                    toastr.success("Interest removed successfully!", "Success");
                 }
             } else {
-                flasher.error(
+                toastr.error(
                     "Failed to change interest status. Please try again.",
                     "Error"
                 );
@@ -45,7 +46,7 @@ window.changeInterestStatus = function (button, listingId) {
         })
         .catch((error) => {
             console.error("Error:", error);
-            flasher.error("An error occurred. Please try again.");
+            toastr.error("An error occurred. Please try again.");
 
             button.disabled = false;
         });

@@ -7,7 +7,7 @@
         <title>@yield('title', 'Job Site')</title>
         @vite(['resources/js/app.js', 'resources/css/app.css'])
         <link rel="icon" href="./favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="{{ asset('vendor/flasher/flasher.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/flasher/toastr.min.css') }}">
     </head>
     <body class="flex flex-col h-screen bg-gray-900 text-white">
         <header class="flex flex-col md:flex-row md:items-center justify-between bg-red-400 p-4 text-black">

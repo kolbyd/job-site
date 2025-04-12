@@ -13,12 +13,24 @@ return Configuration::from([
 
     // List of CSS files to style your notifications
     'styles' => [
-        '/vendor/flasher/flasher.min.css',
+        '/vendor/flasher/toastr.min.css',
     ],
 
-    //Set global options for all notifications (optional)
+    // Set global options for all notifications (optional)
     'options' => [
-        'position' => 'top-center', // Where the notification appears on the screen
+        // Optional: Add global options here
+        // 'closeButton' => true
+        'positionClass' => 'top-center',
+    ],
+
+    'plugins' => [
+        'toastr' => [
+            'options' => [
+                // Optional: Add global options here
+                // 'closeButton' => true
+                'positionClass' => 'toast-top-center mt-2',
+            ],
+        ],
     ],
 
     // Automatically inject JavaScript and CSS assets into your HTML pages
