@@ -83,7 +83,7 @@ This will:
 
 **NOTE: This may take up to 2 minutes before the app is available. To view the status, run the command `docker logs -f laravel-app`.**
 
-Setup
+The site will be available at [localhost:80](http://localhost).
 
 To login, use the credentials: `admin@email.com / password`. You will be assigned to the admin role.
 

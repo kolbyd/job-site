@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8 mx-2 w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-8 mx-2">
             @foreach ($listings as $listing)
                 <div class="flex flex-col bg-gray-800 p-4 rounded-lg shadow-md">
                     <h2 class="text-xl font-bold mb-2">{{ $listing->title }}</h2>
