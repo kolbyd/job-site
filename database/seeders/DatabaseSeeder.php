@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\JobListing;
 use App\Models\JobListingInterest;
+use App\Models\RoleAssignment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -18,6 +19,17 @@ class DatabaseSeeder extends Seeder
 
         User::getQuery()->delete();
         JobListing::getQuery()->delete();
+
+        // Insert admin user
+        $adminUser = User::factory()->create([
+            "name" => "Admin User",
+            "username" => "admin@email.com"
+        ]);
+        RoleAssignment::create([
+            "user_id" => $adminUser->id,
+            "role_name" => RoleAssignment::ADMIN_ROLE
+        ]);
+
         $listings = JobListing::factory()->count(100)->create();
         $users = User::factory()->count(100)->create();
 

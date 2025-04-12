@@ -118,7 +118,9 @@ class ListingController extends Controller
         // Delete the listing
         $listing->delete();
 
+        // 
+
         flash()->success("Listing deleted successfully.");
-        return redirect()->route('listing.poster-listings');
+        return redirect()->back();
     }
 }

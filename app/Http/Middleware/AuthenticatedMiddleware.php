@@ -19,9 +19,9 @@ class AuthenticatedMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->guest()) {
-            // User is already authenticated, redirect them to the index page
+            // User is a guest, redirect them to the login page
             flash()->error('You must be logged in to access this page.');
-            return redirect()->route('login');
+            return redirect()->guest(route('login'));
         }
 
         return $next($request);

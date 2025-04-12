@@ -23,7 +23,7 @@ class JobListingFactory extends Factory
             'user_id' => function () {
                 return User::factory()->create()->id;
             },
-            'created_at' => $this->faker->dateTimeBetween('-2 months', 'now'),
+            'created_at' => $this->faker->dateTimeBetween('-3 months', 'now'),
         ];
     }
 }

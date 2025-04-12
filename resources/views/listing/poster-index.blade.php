@@ -26,17 +26,29 @@
         </thead>
         <tbody>
             @foreach ($listings as $listing)
-                <tr>
-                    <td class="p-2 px-4 border border-gray-400 text-gray-400">{{ $listing->title }}</td>
-                    <td class="p-2 px-4 border border-gray-400 text-gray-400">{{ $listing->interestedUsers()->count() }}</td>
-                    <td class="p-2 px-4 border border-gray-400 text-gray-400">{{ $listing->created_at->format('Y-m-d H:i') }}</td>
-                    <td class="p-2 px-4 border border-gray-400 text-gray-400">
-                        <div class="flex flex-col lg:flex-row justify-around">
-                            <a href="{{ route('listing.edit', $listing->id) }}" class="text-red-300 cursor-pointer">View/Edit</a>
+                {{-- If the listing is older than 2 months, show that it's expired --}}
+                @php
+                    $expired = $listing->created_at->lt(now()->subMonths(2));
+                @endphp
+
+                <tr class="{{ $expired ? 'bg-red-200 text-black' : 'text-gray-400' }}">
+                    <td class="p-2 px-4 border border-gray-400">
+                        <div class="flex flex-row">
+                            @if( $expired )
+                                <p class="text-red-500 font-bold mr-2">EXPIRED</p>
+                            @endif
+                            <p>{{ $listing->title }}</p>
+                        </div>
+                    </td>
+                    <td class="p-2 px-4 border border-gray-400">{{ $listing->interestedUsers()->count() }}</td>
+                    <td class="p-2 px-4 border border-gray-400">{{ $listing->created_at->format('Y-m-d H:i') }}</td>
+                    <td class="p-2 px-4 border border-gray-400">
+                        <div class="flex flex-col lg:flex-row justify-around {{ $expired ? 'text-blue-700' : 'text-red-300' }}">
+                            <a href="{{ route('listing.edit', $listing->id) }}" class="cursor-pointer">View/Edit</a>
                             <form method="POST" action="{{ route('listing.destroy', $listing->id) }}" class="ml-2">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="text-red-300 cursor-pointer">Delete</a>
+                                <button type="submit" class="cursor-pointer">Delete</a>
                             </form>
                         </div>
                     </td>

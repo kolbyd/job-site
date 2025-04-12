@@ -66,7 +66,8 @@ class UserController extends Controller
             // Password is correct, log the user in
             auth()->login($user);
             flash()->success('Login successful!');
-            return redirect()->route('index');
+
+            return redirect()->intended(route('index'));
         } else {
             // Use non-descriptive error messages to prevent user enumeration
             flash()->error('Email and password combination do not match. Please try again.');

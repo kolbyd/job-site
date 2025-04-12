@@ -22,7 +22,7 @@
                                     Show Interest
                                 </button>
                             @endrole
-                            <a href="{{ auth()->check() ? route('listing', $listing->id) : route('login') }}">
+                            <a href="{{ route('listing', $listing->id) }}">
                                 <button class="bg-red-300 text-black px-4 py-1 rounded hover:bg-red-400 transition-colors transition-300 cursor-pointer">View Full Listing</button>
                             </a>
                         </div>

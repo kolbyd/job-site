@@ -20,7 +20,7 @@ class RoleMiddleware
     {
         if (auth()->guest()) {
             flash()->error('You must be logged in to access this page.');
-            return redirect()->route('login');
+            return redirect()->guest(route('login'));
         }
 
         // Check if the user has the required role.
