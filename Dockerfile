@@ -2,7 +2,7 @@
 FROM composer:2.8 AS composer-deps
 WORKDIR /app
 COPY composer.json composer.lock ./
-RUN composer install --no-dev --prefer-dist --optimize-autoloader --no-scripts
+RUN composer install --prefer-dist --optimize-autoloader --no-scripts
 
 # Stage 2: Build node dependencies
 FROM node:20 AS node-build

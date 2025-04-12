@@ -18,7 +18,8 @@ services:
     restart: unless-stopped
     entrypoint: ["/usr/local/bin/docker-entrypoint.sh"]
     depends_on:
-      - mysql
+      mysql:
+        condition: service_started
 
   mysql:
     image: mysql:8.0
