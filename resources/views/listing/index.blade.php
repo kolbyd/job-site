@@ -2,14 +2,13 @@
 
 @section('content')
 <div class="w-full">
-    <a href="{{ route('index') }}"
-        class="text-red-300 cursor-pointer">
-        <span class="flex flex-row items-center gap-2">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+    <a class="mb-2" href="{{ route('index') }}">
+        <button class="flex flex-row items-center gap-2 bg-red-500 font-bold uppercase text-white px-4 py-2 hover:bg-black transition duration-500 ease-in-out cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="size-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
             </svg>
             Back to Listings
-        </span>
+        </button>
     </a>
     <div class="lg:w-2/3 lg:mx-auto h-fit mt-2 mx-2 bg-red-100 p-2">
         <div class="flex flex-col md:flex-row justify-between items-center mx-2">
