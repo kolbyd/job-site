@@ -32,7 +32,7 @@
         <div class="flex flex-col md:flex-row justify-between align-bottom mx-2">
             <p class="text-gray-500 ml-2 text-center">Posted: {{ $listing->created_at->diffForHumans() }}</p>
             <p class="text-gray-500 ml-2 text-center">Updated: {{ $listing->updated_at->diffForHumans() }}</p>
-            <a class="cursor-pointer text-red-500 hover:text-red-700 text-center" href="mailto:{{ $listing->user->username }}?subject=Interest in {{ $listing->title }}&body=Hello {{ $listing->user->name }},%0D%0A%0D%0AI am interested in your listing titled '{{ $listing->title }}'.%0D%0A%0D%0AThank you!">
+            <a class="cursor-pointer text-blue-700 hover:text-blue-900 text-center" href="mailto:{{ $listing->user->username }}?subject=Interest in {{ $listing->title }}&body=Hello {{ $listing->user->name }},%0D%0A%0D%0AI am interested in your listing titled '{{ $listing->title }}'.%0D%0A%0D%0AThank you!">
                 Created by: {{ $listing->user->name }}
             </a>
         </div>
