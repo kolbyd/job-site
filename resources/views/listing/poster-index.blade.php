@@ -4,7 +4,7 @@
 <div class="w-full">
     <div class="flex flex-row mb-2">
         <div>
-            <p class="text-2xl font-bold">My Listings</p>
+            <p class="text-2xl font-bold uppercase">My Listings</p>
             @role(\App\Models\RoleAssignment::ADMIN_ROLE)
             <p class="text-xs text-gray-500">Since you are an admin, you can see all listings!</p>
             @endrole

@@ -77,7 +77,7 @@ class ListingController extends Controller
         $listing->save();
 
         flash()->success("Listing created successfully.");
-        return view('listing.form')->with('listing', $listing);
+        return redirect()->route('listing.edit', $listing);
     }
 
     /**
