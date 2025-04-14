@@ -23,10 +23,10 @@
                                 </button>
                             @endrole
                             <a href="{{ route('listing', $listing->id) }}">
-                                <button class="group bg-red-400 text-white px-4 py-2 hover:bg-black transition-colors transition-500 cursor-pointer uppercase font-bold">
+                                <button class="group bg-red-500 text-white px-4 py-2 hover:bg-black transition-colors transition-500 cursor-pointer uppercase font-bold">
                                     <div class="flex flex-row gap-2 items-center">
                                         View Full Listing
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="size-6 bg-red-500 py-1 group-hover:bg-gray-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor" class="size-6 bg-red-700 py-1 group-hover:bg-gray-500">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
                                         </svg>
                                     </div>    
