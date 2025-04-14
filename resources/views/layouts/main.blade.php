@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{{ asset('vendor/flasher/toastr.min.css') }}">
     </head>
     <body class="flex flex-col h-screen bg-gray-900 text-white">
-        <header class="flex flex-col md:flex-row md:items-center justify-between bg-red-400 p-4 text-black">
+        <header class="flex flex-col md:flex-row md:items-center justify-between bg-red-500 p-4 text-black">
             <a href="{{ route('index') }}" class="text-2xl lg:text-4xl my-auto font-bold">Job Site</a>
             <nav class="md:ml-auto">
                 <ul class="flex flex-1 flex-col md:gap-6 md:flex-row md:items-center justify-around">
